@@ -7,8 +7,8 @@ import {
   ValidateDtoMiddleware,
   DocumentExistsMiddleware,
   PrivateRouteMiddleware,
-  ParseActiveFormMiddleware,
 } from '../../libs/rest/index.js';
+import { ParseActiveFormMiddleware } from '../../libs/rest/middleware/parseActiveForm.js';
 import { Logger } from '../../libs/logger/index.js';
 import { Component } from '../../types/index.js';
 import { VoterService, CreateVoterDto, VoterRdo, UpdateVoterDto } from './index.js';

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Middleware } from '../index.js';
 import { HttpError } from '../index.js';
 import { StatusCodes } from 'http-status-codes';
-import { FormaIsActive } from '../index.js';
+import { FormaIsActive } from './activeForm.interface.js';
 
 export class ParseActiveFormMiddleware implements Middleware {
   constructor (

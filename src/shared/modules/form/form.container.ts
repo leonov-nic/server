@@ -1,10 +1,8 @@
 import { Container } from 'inversify';
 import { types } from '@typegoose/typegoose';
-import { DefaultFormService, FormService } from './index.js';
+import { DefaultFormService, FormService, FormController, FormEntity, FormModel } from './index.js';
 import { Component } from '../../types/index.js';
-import { FormEntity, FormModel } from './index.js';
 import { Controller } from '../../libs/rest/index.js';
-import { FormController } from './index.js';
 
 export function createFormContainer() {
   const formContainer = new Container();
