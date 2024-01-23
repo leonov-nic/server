@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:4.2
+    restart: always
+    container_name: vote_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  db_ui:
+    image: mongo-express:latest
+    restart: always
+    container_name: vote_mongo_express
+    ports:
+      - 8080:8080
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${DB_USER}:${DB_PASSWORD}@${DB_NAME}:27017/
+
+volumes:
+  vote:

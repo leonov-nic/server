@@ -1,0 +1,206 @@
+# ФОРМА
+## Получение формы
+GET http://localhost:5001/form HTTP/1.1
+###
+
+## Обновление активности формы
+PATCH http://localhost:5001/form/659d01dc32ea1901603d37c4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im9icmF6b3ZAeWEucnUiLCJkaXJlY3Rpb24iOiLQntCx0YDQsNC30L7QstCw0L3QuNC1IiwiYXZhdGFyIjoiZGVmYXVsdC1hdmF0YXIuc3ZnIiwidHlwZSI6InJlZ3VsYXIiLCJpZCI6IjY1OTU0ODMwYWQwYWQ3ZjQzMzEyMmE4NiIsImlhdCI6MTcwNDY1OTg3MSwiZXhwIjoxNzA0ODMyNjcxfQ.NFRnmACDt_n6zqGm8sVOglNzOek7w1VvMy2ash5H-vQ
+
+###
+
+
+## Создание формы
+POST http://localhost:5001/form HTTP/1.1
+Content-Type: application/json
+
+{
+  "isActive": true
+}
+###
+
+
+# ПОЛЬЗОВАТЕЛИ
+## Создать нового пользователя
+POST http://localhost:5001/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "direction": "МФЦ",
+  "email": "mfc@ya.ru",
+  "type": "regular",
+  "password": "123456"
+}
+###
+
+## Создать нового пользователя
+POST http://localhost:5001/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "direction": "Транспорт",
+  "email": "trans@ya.ru",
+  "type": "regular",
+  "password": "123456"
+}
+###
+
+## Создать нового пользователя
+POST http://localhost:5001/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "direction": "Образование",
+  "email": "obrazov@ya.ru",
+  "type": "regular",
+  "password": "123456"
+}
+###
+
+## Создать нового пользователя-admin
+POST http://localhost:5001/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "direction": "all",
+  "email": "admin@mail.ru",
+  "type": "pro",
+  "password": "123456789"
+}
+###
+
+## Аутентификация  пользователя
+POST http://localhost:5001/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "trans@ya.ru",
+  "password": "123456"
+}
+###
+
+## Проверка пользователя
+GET http://localhost:5001/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im9icmF6b3ZAeWEucnUiLCJkaXJlY3Rpb24iOiLQntCx0YDQsNC30L7QstCw0L3QuNC1IiwiYXZhdGFyIjoiZGVmYXVsdC1hdmF0YXIuc3ZnIiwidHlwZSI6InJlZ3VsYXIiLCJpZCI6IjY1OWQwMTI0MzJlYTE5MDE2MDNkMzdiYSIsImlhdCI6MTcwNDc4ODMxNCwiZXhwIjoxNzA0OTYxMTE0fQ.luOOZexycYT09FL0qW52ruBEpWabDlf_x62kWPL0TXQ
+###
+
+
+
+## Отправить изображение на аватар
+POST http://localhost:5001/users/avatar HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5pa0B5YS5uZXQiLCJuYW1lIjoiTmlrb2xhIiwiYXZhdGFyIjoiZGVmYXVsdC1hdmF0YXIuc3ZnIiwidHlwZSI6InBybyIsImlkIjoiNjU1OWU5M2U4ODU2NTI0YWY2Njk5ZTdkIiwiaWF0IjoxNzAwMzkxMjU0LCJleHAiOjE3MDA1NjQwNTR9.mk2RIiJjtyo9PdlLxV3J_dNKyOsD16DRjYdig8tsK74
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="foto.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+
+
+# ГОЛОСУЮЩИЕ
+## Получение выборщиков
+GET http://localhost:5001/voters/ HTTP/1.1
+Content-Type: application/json
+###
+
+
+## Обновление выборщиков активные текущие в неактивные
+PUT http://localhost:5001/voters/ HTTP/1.1
+Content-Type: application/json
+###
+
+
+## Создание одного выборщика
+POST http://localhost:5001/voters HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRyYW5zQHlhLnJ1IiwiZGlyZWN0aW9uIjoi0KLRgNCw0L3RgdC_0L7RgNGCIiwiYXZhdGFyIjoiZGVmYXVsdC1hdmF0YXIuc3ZnIiwidHlwZSI6InJlZ3VsYXIiLCJpZCI6IjY1YWVhYWFjYjgyMWM3M2VmMjc1ZmM1NiIsImlhdCI6MTcwNTk0NTk4NSwiZXhwIjoxNzA2NTUwNzg1fQ.z2YEdOxUMz4az6nRGJdtsNYHDZJoJ3Z3Lwr5JhZAscs
+Content-Type: application/json
+
+{
+    "family": "Лужков",
+    "name": "Сергей",
+    "surname": "Петрович",
+    "address": "Люберцы, Октябрьский проспект, д.10, кв. 120",
+    "job": "Гимназия №1",
+    "direction": "Транспорт",
+    "phone": "79153895344",
+    "registration": "222533355",
+    "isCurrent": true,
+    "author": "65aeaaacb821c73ef275fc56"
+}
+###
+
+## Удаление выборщика
+DELETE http://localhost:5001/voters/6589c7bef7a69f49cc6e43f5 HTTP/1.1
+###
+
+
+
+
+
+
+
+
+
+## Обновление предложения
+
+## Отправить изображения для предложения
+POST http://localhost:5000/offers/6550954d099643a7f1b710da/images HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJtYWlsIjoibmFkYUB5YS5uZXQiLCJuYW1lIjoiTmFkb21hbiIsImF2YXRhciI6IlNVSWl0blU3OTJOdkR1MTdZaWVpZy5qcGVnIiwidXNlclR5cGUiOiJwcm8iLCJpZCI6IjY1NGZiZDdiOWJiMWFkNzdlZTMwMzMzZSIsImlhdCI6MTY5OTc4MDQxNiwiZXhwIjoxNjk5OTUzMjE2fQ.rISGHoqvod23-919lxv-v1DprXTS0bjK8bYd7_e0m6E
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto.jpg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto2.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto2.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto2.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto2.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="foto2.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+## Отправить изображение-первью для предложения
+POST http://localhost:5000/offers/6559ea22f0f573cebda25a72/preview HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5pa0B5YS5uZXQiLCJuYW1lIjoiTmlrb2xhIiwiYXZhdGFyIjoiZGVmYXVsdC1hdmF0YXIuc3ZnIiwidHlwZSI6InBybyIsImlkIjoiNjU1OWU5M2U4ODU2NTI0YWY2Njk5ZTdkIiwiaWF0IjoxNzAwMzkxMjU0LCJleHAiOjE3MDA1NjQwNTR9.mk2RIiJjtyo9PdlLxV3J_dNKyOsD16DRjYdig8tsK74
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imagePreview"; filename="foto.jpeg"
+Content-Type: image/jpeg
+
+< /Users/Nikolay/Desktop/foto2.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
